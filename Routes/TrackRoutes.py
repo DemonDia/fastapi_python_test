@@ -2,14 +2,25 @@
 from fastapi import Response, Depends
 from Schema.TrackSchema import Track
 from database import *
-from sqlmodel import Session, select
+from sqlmodel import Session, select, delete
 from config import  app
 from Models.TrackModel import TrackModel
+from HelperFunctions import *
 
+# ===========================test functions===========================
+@app.delete("/tracks/deleteall")
+def deleteAll(session:Session = Depends(get_session)):
+    return deleteAllData(TrackModel)
+
+@app.post("/tracks/seedall")
+def addSeedData(session:Session = Depends(get_session)):
+    return seedInitialData("track",TrackModel)
+
+
+# ===========================actual CRUD functions===========================
 @app.get('/tracks/')
 def getTracks(session: Session = Depends(get_session)):
-
-    stmt = stmt = select(TrackModel)
+    stmt = select(TrackModel)
     result = session.exec(stmt).all()
     # return result
     return {
