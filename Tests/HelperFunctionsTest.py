@@ -2,9 +2,12 @@ import requests
 # =====================Other helper functions=====================
 # check if test case pass
 def validateOutcome(actualResult, expectedResult):
-    if actualResult == expectedResult:
-        print("Test case passed")
-    else:
+    try:
+        if actualResult["success"] == expectedResult:
+            print("Test case passed")
+        else:
+            print("Test case failed")
+    except:
         print("Test case failed")
 # delete all data
 def deleteAll(url):
@@ -20,7 +23,17 @@ def seedData(url):
 def resetDataToDefaults(url):
     deleteResults = deleteAll(url)
     seedResults = seedData(url)
-    return deleteResults["success"] == seedResults["success"]
+    returningResult = deleteResults["success"] == seedResults["success"]
+    message = ""
+    if(returningResult):
+        message = "Reset successfully"
+    else:
+        message = "Reset failed"
+    return {
+        "success" : returningResult,
+        "message" : message
+    }
+
 
 # =====================CRUD functions=====================
 # Gets single row based on its ID

@@ -44,6 +44,10 @@ def track(track_id: int, session: Session = Depends(get_session)):
 
 @app.post("/tracks/")
 def createTrack(track: TrackModel, session: Session = Depends(get_session)):
+    session.add(track)
+    session.commit()
+    session.refresh(track)
+    session.close()
     return {
         "success": True,
         "message": "Successfully added"
