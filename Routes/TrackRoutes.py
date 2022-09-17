@@ -9,11 +9,11 @@ from HelperFunctions import *
 
 # ===========================test functions===========================
 @app.delete("/tracks/deleteall")
-def deleteAll(session:Session = Depends(get_session)):
+def deleteAll():
     return deleteAllData(TrackModel)
 
 @app.post("/tracks/seedall")
-def addSeedData(session:Session = Depends(get_session)):
+def addSeedData():
     return seedInitialData("track",TrackModel)
 
 
