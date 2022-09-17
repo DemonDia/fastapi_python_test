@@ -29,10 +29,9 @@ def getTracks(session: Session = Depends(get_session)):
     }
 
 @app.get("/tracks/{track_id}/")
-def track(track_id: int, response: Response, session: Session = Depends(get_session)):
+def track(track_id: int, session: Session = Depends(get_session)):
     track = session.get(TrackModel, track_id)
     if not track:
-        response.status_code = 404
         return {
             "success": False,
             "message": "Track not found"
@@ -45,20 +44,15 @@ def track(track_id: int, response: Response, session: Session = Depends(get_sess
 
 @app.post("/tracks/")
 def createTrack(track: TrackModel, session: Session = Depends(get_session)):
-    session.add(track)
-    session.commit()
-    session.refresh(track)
-    session.close()
     return {
         "success": True,
         "message": "Successfully added"
     }
 
-
 @app.put("/tracks/{track_id}/")
 def updateTrack(track_id: int, updated_track: Track, session: Session = Depends(get_session)):
     track = session.get(TrackModel, track_id)
-    if not track:
+    if track == None:
         return {
             "success": False,
             "message": "Track not found"

@@ -31,6 +31,7 @@ def getAllDataTest():
     print("4) Get all data")
     result = getAllRows(BASE)
     validateOutcome(result["success"],True)
+    print("dataSize", len(result["data"]))
     print()
     print()
 
@@ -62,7 +63,7 @@ def addDataTest():
     validateOutcome(addDataPassResult["success"],True)
     print()
 
-    print("6)b)Unsuccessful adding due to missing cases")
+    print("6)b)Unsuccessful adding due to missing fields")
     jsonToAddFail = {
         "title":"Test Title",
         "artist":"Test Artist",
@@ -72,6 +73,7 @@ def addDataTest():
     validateOutcome(addDataFailResult["success"],False)
     print()
     print()
+
 # 7) Update data
 def updateDataTest():
     print("7) Update data")
@@ -82,7 +84,7 @@ def updateDataTest():
         "duration":180.0,
         "last_play":"2017-04-01T08:31:33"
     }
-    updatePass = updateRow(BASE,25,updateData)
+    updatePass = updateRow(BASE,87,updateData)
     validateOutcome(updatePass["success"],True)
     print()
 
@@ -112,6 +114,6 @@ if __name__ == "__main__":
     resetDataToDefaultTest()
     getAllDataTest()
     getDataByIdTest()
-    addDataTest()
+    # addDataTest()
     updateDataTest()
     deleteDataTest()

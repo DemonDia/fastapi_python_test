@@ -15,6 +15,7 @@ def deleteAll(url):
 def seedData(url):
     results = requests.post(url+"seedall")
     return results.json()
+
 # reset to defaults
 def resetDataToDefaults(url):
     deleteResults = deleteAll(url)
@@ -38,7 +39,7 @@ def addRow(url,jsonObject):
     return addedRow.json()
 # Update rows
 def updateRow(url, rowId,jsonObject):
-    updatedRow = requests.put(url+"{rowId}".format(rowId=rowId),params = jsonObject)
+    updatedRow = requests.put(url+"{rowId}".format(rowId=rowId),json = jsonObject)
     return updatedRow.json()
 # Delete rows
 def deleteRow(url, rowId):

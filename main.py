@@ -10,3 +10,6 @@ async def startup_event():
     seedInitialData("track",TrackModel)
 
 
+@app.get("/")
+async def hello():
+    return "OK"
