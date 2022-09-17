@@ -22,7 +22,6 @@ def seedDataTest():
 def resetDataToDefaultTest():
     print("3) Reset data to defaults")
     result = resetDataToDefaults(BASE)
-    print(result)
     validateOutcome(result,True)
     print()
     print()
@@ -42,11 +41,13 @@ def getDataByIdTest():
     idExists = getSingleRow(BASE,200)
     validateOutcome(idExists["success"],True)
     print()
+
     print("5)b)ID does not exist")
     idDoesNotExist = getSingleRow(BASE,99999)
     validateOutcome(idDoesNotExist["success"],False)
     print()
     print()
+
 # 6) Add data
 def addDataTest():
     print("6) Add data")
@@ -87,7 +88,7 @@ def updateDataTest():
 
     print("7)b) Update unsuccessful due to ID not found")
     updateFail = updateRow(BASE,122125,updateData)
-    print(updateFail["success"],False)
+    validateOutcome(updateFail["success"],False)
     print()
     print()
     
@@ -96,21 +97,21 @@ def deleteDataTest():
     print("8) Delete data")
     print("8)a) Delete successful")
     deletePass = deleteRow(BASE,87)
-    print(deletePass["success"],True)
+    validateOutcome(deletePass["success"],True)
     print()
 
     print("8)b) Delete fail due to ID not found")
     deleteFail = deleteRow(BASE,8888887)
-    print(deleteFail["success"],False)
+    validateOutcome(deleteFail["success"],False)
     print()
     print()
 
 if __name__ == "__main__":
-    # deleteAllDataTest()
-    # seedDataTest()
-    # resetDataToDefaultTest()
-    # getAllDataTest()
-    # getDataByIdTest()
-    # addDataTest()
-    # updateDataTest()
+    deleteAllDataTest()
+    seedDataTest()
+    resetDataToDefaultTest()
+    getAllDataTest()
+    getDataByIdTest()
+    addDataTest()
+    updateDataTest()
     deleteDataTest()
