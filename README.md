@@ -51,10 +51,13 @@ Eg: If your model name is 'Entity', your naming convention should be like:
 2. Open the project in VSC 
 3. In your terminal, type this in CLI: 
 ```
+pip freeze > requirements.txt
 pip install -r requirements.txt
 ```
 
-NOTE: this downloads the dependencies stated in the requirements.txt
+NOTE: 
+- pip freeze > requirements.txt creates a 'requirement.txt' file and then adds dependencies of the project inside 'requirements.txt'
+- this downloads the dependencies stated in the requirements.txt
 
 ### Running the project (for testing):
 To run the main API, type the following in your terminal:
