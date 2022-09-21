@@ -70,6 +70,6 @@ python <api_name>Test.py
 Note: 
 - cd Tests: you go to the path of the Tests folder
 - python <api_name>Test.py: you run the test script of a given entity (api_name), depending on what you want to test
-
+- this does NOT apply to HelperFunction.py
 __NOTE: before you run your test file inside the 'Tests' folder, ensure your main.py is running__
 
